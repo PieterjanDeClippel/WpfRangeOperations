@@ -81,34 +81,32 @@ namespace MintPlayer.ObservableCollection
         {
             if (!isAddingOrRemovingRange)
             {
-                // Only invoke the CollectionChanged with all items, not individually
-                //base.OnCollectionChanged(e);
-
-                var _deferredEvents = (ICollection<NotifyCollectionChangedEventArgs>)typeof(ObservableCollection<T>).GetField("_deferredEvents", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(this);
-                if (_deferredEvents == null)
+                var _deferredEv = (ICollection<NotifyCollectionChangedEventArgs>)_deferredEvents;
+                if (_deferredEv == null)
                 {
                     foreach (var handler in GetHandlers())
                     {
                         var isCollectionView = IsCollectionView(handler.Target);
                         if (IsRange(e) && isCollectionView)
                         {
+                            // Call the Refresh method if the target is a WPF CollectionView
                             handler.Target.GetType().GetMethod("Refresh").Invoke(handler.Target, new object[0]);
-                            //cv.Refresh();
                         }
                         else
+                        {
                             handler(this, e);
+                        }
                     }
                 }
                 else
                 {
-                    _deferredEvents.Add(e);
+                    _deferredEv.Add(e);
                 }
 
                 // Also only attach the PropertyChanged event handler when we're not into
                 // the process of adding a number of items one by one.
-                var itf = typeof(T).GetInterfaces();
 
-                if (itf.Contains(typeof(INotifyPropertyChanged)))
+                if (typeof(T).GetInterfaces().Contains(typeof(INotifyPropertyChanged)))
                 {
                     // First detach all event handlers
                     if (e.OldItems != null)
@@ -129,8 +127,6 @@ namespace MintPlayer.ObservableCollection
                 }
             }
         }
-
-        protected virtual IDisposable DeferEvents() => new DeferredEventsCollection(this);
 
         #region ItemPropertyChanged
         public event ItemPropertyChangedEventHandler<T> ItemPropertyChanged;
