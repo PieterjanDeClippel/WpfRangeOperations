@@ -11,6 +11,7 @@
     </Window.DataContext>
     <StackPanel Orientation="Vertical">
         <Button Command="{Binding AddItemsCommand}" HorizontalAlignment="Stretch" VerticalAlignment="Top">Add Items</Button>
+        <Button Command="{Binding RemoveItemsCommand}" HorizontalAlignment="Stretch" VerticalAlignment="Top">Remove Items</Button>
         <ListView ItemsSource="{Binding Items}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <ListView.ItemTemplate>
                 <DataTemplate>

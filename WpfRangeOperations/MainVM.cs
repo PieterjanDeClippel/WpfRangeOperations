@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows.Input;
@@ -39,6 +40,17 @@ namespace WpfApp2
             }
         }
 
+        private ICommand removeItemsCommand;
+        public ICommand RemoveItemsCommand
+        {
+            get
+            {
+                if (removeItemsCommand == null)
+                    removeItemsCommand = new RelayCommand(OnRemoveItems, CanRemoveItems);
+                return removeItemsCommand;
+            }
+        }
+
         private void OnAddItems(object obj)
         {
             Items.AddRange(new[]
@@ -51,6 +63,17 @@ namespace WpfApp2
         }
 
         private bool CanAddItems(object arg)
+        {
+            return true;
+        }
+
+        private void OnRemoveItems(object obj)
+        {
+            var items = Items.Take(4).ToList();
+            Items.RemoveRange(items);
+        }
+
+        private bool CanRemoveItems(object arg)
         {
             return true;
         }
