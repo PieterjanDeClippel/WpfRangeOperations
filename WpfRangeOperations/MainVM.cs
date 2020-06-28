@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading;
 using System.Windows.Input;
 
 namespace WpfApp2
@@ -53,13 +54,18 @@ namespace WpfApp2
 
         private void OnAddItems(object obj)
         {
-            Items.AddRange(new[]
+            var itemsToAdd = new[]
             {
                 new Item { Id = "1", Text = "Pieterjan", Description = "Pieterjan" },
                 new Item { Id = "1", Text = "Pieterjan", Description = "Pieterjan" },
                 new Item { Id = "1", Text = "Pieterjan", Description = "Pieterjan" },
                 new Item { Id = "1", Text = "Pieterjan", Description = "Pieterjan" }
-            });
+            };
+            //items.AddRange(itemsToAdd);
+            new Thread(new ParameterizedThreadStart((param) =>
+            {
+                Items.AddRange((Item[])param);
+            })).Start(itemsToAdd);
         }
 
         private bool CanAddItems(object arg)
