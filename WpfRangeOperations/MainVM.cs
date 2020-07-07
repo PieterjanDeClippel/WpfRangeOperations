@@ -64,7 +64,17 @@ namespace WpfApp2
             //items.AddRange(itemsToAdd);
             new Thread(new ParameterizedThreadStart((param) =>
             {
+                // Attempt to add range from another thread
+                // This case is handled by the MintPlayer.ObservableCollection itself
                 Items.AddRange((Item[])param);
+
+                // Attempt to call a base ObservableCollection method from another thread
+                // This case is handled by the ObservableCollection.InsertItem override
+                Items.Add(new Item { Id = "1", Text = "Tester", Description = "Tester" });
+
+                // Attempt to replace an item from another thread
+                // This case is handled by the ObservableCollection.SetItem override
+                Items[2] = new Item { Id = "3", Text = "Replacement", Description = "Replacement" };
             })).Start(itemsToAdd);
         }
 
