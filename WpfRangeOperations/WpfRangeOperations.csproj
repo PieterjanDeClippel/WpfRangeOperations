@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MintPlayer.ObservableCollection" Version="1.0.7" />
+    <ProjectReference Include="..\Test\Test.csproj" />
   </ItemGroup>
 
 </Project>
