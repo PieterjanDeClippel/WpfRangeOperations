@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfRangeOperations", "WpfRangeOperations\WpfRangeOperations.csproj", "{C289FDAA-46EB-4629-A960-84BDDF4CF2B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{AB89ACC6-B7C1-4E3D-8EBF-25B22BD68D01}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{C289FDAA-46EB-4629-A960-84BDDF4CF2B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C289FDAA-46EB-4629-A960-84BDDF4CF2B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C289FDAA-46EB-4629-A960-84BDDF4CF2B5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AB89ACC6-B7C1-4E3D-8EBF-25B22BD68D01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AB89ACC6-B7C1-4E3D-8EBF-25B22BD68D01}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AB89ACC6-B7C1-4E3D-8EBF-25B22BD68D01}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AB89ACC6-B7C1-4E3D-8EBF-25B22BD68D01}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

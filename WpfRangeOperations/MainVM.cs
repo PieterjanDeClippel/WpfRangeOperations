@@ -54,14 +54,19 @@ namespace WpfApp2
 
         private void OnAddItems(object obj)
         {
-            var itemsToAdd = new[]
+            items.RemoveRange(new Item[] { });
+
+            items.AddRange(new Item[] { });
+
+            var itemsToAdd = new Item[]
             {
                 new Item { Id = "1", Text = "Pieterjan", Description = "Pieterjan" },
                 new Item { Id = "1", Text = "Pieterjan", Description = "Pieterjan" },
                 new Item { Id = "1", Text = "Pieterjan", Description = "Pieterjan" },
                 new Item { Id = "1", Text = "Pieterjan", Description = "Pieterjan" }
             };
-            //items.AddRange(itemsToAdd);
+            items.AddRange(itemsToAdd);
+
             new Thread(new ParameterizedThreadStart((param) =>
             {
                 // Attempt to add range from another thread
